@@ -1,15 +1,15 @@
 import React from "react";
+import User from "../User";
+import Rooms from "../Rooms";
+
 import "./SidePanel.css";
 
 const SidePanel = () => {
   return (
     <div className="SidePanel">
       <div>Chat App Header</div>
-      <div>Anurag</div>
-      <ul>
-        <li>Room 1</li>
-        <li>Room 2</li>
-      </ul>
+      <User />
+      <Rooms />
     </div>
   );
 };
