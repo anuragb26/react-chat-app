@@ -6,8 +6,18 @@ import CurrentRoomContext from "../context/CurrentRoomContext";
 import "./ChatApp.css";
 
 const ChatApp = () => {
-  const [user, setUser] = useState(null);
-  const [currentRoom, setCurrentRoom] = useState(null);
+  // use null in production after user login
+  const [user, setUser] = useState({
+    displayName: "Anurag",
+    photoURL: "",
+    uid: "id anurag"
+  });
+  // use null in production after Room Selected Logic
+  const [currentRoom, setCurrentRoom] = useState({
+    id: "id1",
+    name: "room1",
+    description: "Room 1"
+  });
   return (
     <div className="ChatApp">
       <UserContext.Provider value={{ user, setUser }}>

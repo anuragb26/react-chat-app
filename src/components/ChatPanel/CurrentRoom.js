@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import CurrentRoomContext from "../../context/CurrentRoomContext";
 
 const CurrentRoom = () => {
-  return <div>Room1</div>;
+  const { currentRoom } = useContext(CurrentRoomContext);
+  return <div>{currentRoom.name}</div>;
 };
 
 export default CurrentRoom;
