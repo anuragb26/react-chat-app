@@ -1,40 +1,47 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import CurrentRoom from "./CurrentRoom";
 import Messages from "./Messages";
 import SendMessage from "./SendMessage";
+import CurrentRoomContext from "../../context/CurrentRoomContext";
 import firebase from "../../config/firebase";
 import "./ChatPanel.css";
 
 const ChatPanel = () => {
   const [messages, setMessages] = useState([]);
   const messagesRef = useRef();
+  const { currentRoom } = useContext(CurrentRoomContext);
   messagesRef.current = messages;
   const messagesRefFirebase = firebase.database().ref("messages");
 
+  const messagesRefFirebasePerRoom = messagesRefFirebase.child(currentRoom.id);
   const addMessageListener = () => {
-    //  console.log("addMessageListener");
-    messagesRefFirebase.on("child_added", snap => {
+    // This is set only once during use effect so it needs ref to get the latest state
+    messagesRefFirebasePerRoom.on("child_added", snap => {
+      // console.log("addMessageListener");
       //  console.log("snap", snap.val());
       //console.log("messages", messages);
       setMessages([...messagesRef.current, snap.val()]);
+      // setMessages([...messages, snap.val()]);
     });
   };
   const removeMessageListener = () => {
-    messagesRefFirebase.off();
+    messagesRefFirebasePerRoom.off();
   };
 
   useEffect(() => {
+    // console.log("in use effect making empty state");
+    setMessages([]);
     addMessageListener();
     return () => {
       removeMessageListener();
     };
-  }, []);
+  }, [currentRoom.id]);
 
   return (
     <div className="ChatPanel">
       <CurrentRoom />
       <Messages messages={messages} />
-      <SendMessage messagesRefFirebase={messagesRefFirebase} />
+      <SendMessage messagesRefFirebasePerRoom={messagesRefFirebasePerRoom} />
     </div>
   );
 };

@@ -12,7 +12,7 @@ import "./SendMessage.css";
   timestamp
 */
 
-const SendMessage = ({ messagesRefFirebase }) => {
+const SendMessage = ({ messagesRefFirebasePerRoom }) => {
   const { user } = useContext(UserContext);
   const { currentRoom } = useContext(CurrentRoomContext);
   const [messageText, setMessageText] = useState("");
@@ -23,7 +23,7 @@ const SendMessage = ({ messagesRefFirebase }) => {
     timestamp: firebase.database.ServerValue.TIMESTAMP,
     user
   });
-  const messageId = messagesRefFirebase.push().key;
+  const messageId = messagesRefFirebasePerRoom.push().key;
   // console.log("messageId", messageId);
   const message = createMessage(messageId);
   return (
@@ -36,7 +36,7 @@ const SendMessage = ({ messagesRefFirebase }) => {
       />
       <button
         onClick={() => {
-          messagesRefFirebase
+          messagesRefFirebasePerRoom
             .child(messageId)
             .set(message)
             .then(msg => {
