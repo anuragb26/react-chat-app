@@ -18,6 +18,7 @@ const ChatApp = () => {
     name: "room1",
     description: "Room 1"
   });
+  console.log("Chat app renders again");
   return (
     <div className="ChatApp">
       <UserContext.Provider value={{ user, setUser }}>

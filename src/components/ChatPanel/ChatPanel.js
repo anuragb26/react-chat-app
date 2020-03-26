@@ -12,10 +12,10 @@ const ChatPanel = () => {
   const messagesRefFirebase = firebase.database().ref("messages");
 
   const addMessageListener = () => {
-    console.log("addMessageListener");
+    //  console.log("addMessageListener");
     messagesRefFirebase.on("child_added", snap => {
-      console.log("snap", snap.val());
-      console.log("messages", messages);
+      //  console.log("snap", snap.val());
+      //console.log("messages", messages);
       setMessages([...messagesRef.current, snap.val()]);
     });
   };
@@ -24,7 +24,7 @@ const ChatPanel = () => {
   };
 
   useEffect(() => {
-    // addMessageListener();
+    addMessageListener();
     return () => {
       removeMessageListener();
     };
