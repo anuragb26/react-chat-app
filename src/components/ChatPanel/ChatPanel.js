@@ -39,7 +39,7 @@ const ChatPanel = () => {
 
   return (
     <div className="ChatPanel">
-      <CurrentRoom />
+      <CurrentRoom messages={messages} />
       <Messages messages={messages} />
       <SendMessage messagesRefFirebasePerRoom={messagesRefFirebasePerRoom} />
     </div>

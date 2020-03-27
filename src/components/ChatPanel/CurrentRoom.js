@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import CurrentRoomContext from "../../context/CurrentRoomContext";
 
-const CurrentRoom = () => {
+const CurrentRoom = ({ messages }) => {
   const { currentRoom } = useContext(CurrentRoomContext);
-  return <div>{currentRoom.name}</div>;
+  const distinctUsers = [...new Set([messages.map(m => m.user.id)])].length;
+  return (
+    <div>
+      <p>{currentRoom.name}</p>
+      <p>{distinctUsers} users</p>
+    </div>
+  );
 };
 
 export default CurrentRoom;
