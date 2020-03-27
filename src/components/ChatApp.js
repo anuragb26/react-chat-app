@@ -13,18 +13,14 @@ const ChatApp = () => {
     uid: "id anurag"
   });
   // use null in production after Room Selected Logic
-  const [currentRoom, setCurrentRoom] = useState({
-    id: "idroom1",
-    name: "room1",
-    description: "Room 1"
-  });
+  const [currentRoom, setCurrentRoom] = useState(null);
 
   return (
     <div className="ChatApp">
       <UserContext.Provider value={{ user, setUser }}>
         <CurrentRoomContext.Provider value={{ currentRoom, setCurrentRoom }}>
           <SidePanel />
-          <ChatPanel />
+          {currentRoom ? <ChatPanel /> : <h3>Please select a room</h3>}
         </CurrentRoomContext.Provider>
       </UserContext.Provider>
     </div>

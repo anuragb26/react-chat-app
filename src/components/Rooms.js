@@ -34,7 +34,14 @@ const Rooms = () => {
     return () => removeRoomListener();
   }, []);
   const roomElements = rooms.map((room, index) => (
-    <li key={index}>{room.name}</li>
+    <li
+      onClick={() => {
+        setCurrentRoom(rooms[index]);
+      }}
+      key={index}
+    >
+      {room.name}
+    </li>
   ));
   return (
     <div>
