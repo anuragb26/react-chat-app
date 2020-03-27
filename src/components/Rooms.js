@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import CurrentRoomContext from "../context/CurrentRoomContext";
 import firebase from "../config/firebase";
 const Rooms = () => {
   const { setCurrentRoom } = useContext(CurrentRoomContext);
+  const [rooms, setRooms] = useState([]);
+  const currentRoomRef = useRef();
+  currentRoomRef.current = rooms;
+  // currentRoomRef.current =
   const roomsRefFireBase = firebase.database().ref("rooms");
   const addRoom = () => {
     const roomId = roomsRefFireBase.push().key;
@@ -17,37 +21,26 @@ const Rooms = () => {
       .then(() => console.log("new room"))
       .catch(err => console.log(err));
   };
+  const addRoomListener = () => {
+    roomsRefFireBase.on("child_added", snap => {
+      setRooms([...currentRoomRef.current, snap.val()]);
+    });
+  };
+  const removeRoomListener = () => {
+    roomsRefFireBase.off();
+  };
+  useEffect(() => {
+    addRoomListener();
+    return () => removeRoomListener();
+  }, []);
+  const roomElements = rooms.map((room, index) => (
+    <li key={index}>{room.name}</li>
+  ));
   return (
     <div>
       <p>rooms: (...)</p>
       <button onClick={() => addRoom()}>Add Room</button>
-      <ul>
-        {/*
-        <li
-          onClick={() =>
-            setCurrentRoom({
-              id: "idroom1",
-              name: "room1",
-              description: "desc 1"
-            })
-          }
-        >
-          Room 1
-        </li>
-        <li
-          onClick={() =>
-            setCurrentRoom({
-              id: "idroom2",
-              name: "room2",
-              description: "desc 2"
-            })
-          }
-        >
-          Room 2
-        
-        </li>
-        */}
-      </ul>
+      <ul>{roomElements}</ul>
     </div>
   );
 };
