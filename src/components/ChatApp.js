@@ -9,7 +9,7 @@ const ChatApp = () => {
   // use null in production after user login
   const [user, setUser] = useState({
     displayName: "Anurag",
-    photoURL: "",
+    photoURL: "https://randomuser.me/api/portraits/lego/2.jpg",
     uid: "id anurag"
   });
   // use null in production after Room Selected Logic
