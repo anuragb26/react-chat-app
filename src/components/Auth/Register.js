@@ -17,9 +17,7 @@ const Register = ({ history }) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(createdUser => {
-        console.log("createdUser", createdUser.user);
         createdUser.user.updateProfile({ displayName, photoURL }).then(() => {
-          console.log("after update create User", createdUser.user);
           setUser({ displayName, photoURL, uid: createdUser.user.uid });
           history.push("/");
         });
