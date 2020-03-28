@@ -4,7 +4,8 @@ import "./CurrentRoom.css";
 
 const CurrentRoom = ({ messages }) => {
   const { currentRoom } = useContext(CurrentRoomContext);
-  const distinctUsers = [...new Set([messages.map(m => m.user.id)])].length;
+  const distinctUsers = [...new Set(messages.map(m => m.user.id))].length;
+
   return (
     <div className="CurrentRoom">
       <h4>{currentRoom.name}</h4>

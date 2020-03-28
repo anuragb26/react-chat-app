@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import CurrentRoomContext from "../context/CurrentRoomContext";
+import AddRoomModal from "./AddRoomModal";
 import firebase from "../config/firebase";
+import "./Rooms.css";
+
 const Rooms = () => {
   const { setCurrentRoom } = useContext(CurrentRoomContext);
   const [rooms, setRooms] = useState([]);
@@ -8,19 +11,6 @@ const Rooms = () => {
   currentRoomRef.current = rooms;
   // currentRoomRef.current =
   const roomsRefFireBase = firebase.database().ref("rooms");
-  const addRoom = () => {
-    const roomId = roomsRefFireBase.push().key;
-    const newRoom = {
-      id: roomId,
-      name: "room2",
-      description: "desc2"
-    };
-    roomsRefFireBase
-      .child(roomId)
-      .set(newRoom)
-      .then(() => console.log("new room"))
-      .catch(err => console.log(err));
-  };
   const addRoomListener = () => {
     roomsRefFireBase.on("child_added", snap => {
       setRooms([...currentRoomRef.current, snap.val()]);
@@ -44,9 +34,11 @@ const Rooms = () => {
     </li>
   ));
   return (
-    <div>
-      <button onClick={() => addRoom()}>Add Room</button>
-      <h4>rooms: ({rooms.length})</h4>
+    <div className="Rooms">
+      <div className="RoomsHeader">
+        <h4>rooms: ({rooms.length})</h4>
+        <AddRoomModal roomsRefFireBase={roomsRefFireBase} />
+      </div>
       <ul>{roomElements}</ul>
     </div>
   );
