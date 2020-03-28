@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import SidePanel from "./SidePanel/SidePanel";
 import ChatPanel from "./ChatPanel/ChatPanel";
-import UserContext from "../context/UserContext";
 import CurrentRoomContext from "../context/CurrentRoomContext";
 import "./ChatApp.css";
 
