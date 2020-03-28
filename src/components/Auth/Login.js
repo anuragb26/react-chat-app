@@ -1,5 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Header, Icon, Form, Button, Segment } from "semantic-ui-react";
+import {
+  Header,
+  Icon,
+  Form,
+  Button,
+  Segment,
+  Message
+} from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import { appName, appIconName } from "../../config/constants";
 import UserContext from "../../context/UserContext";
 import firebase from "../../config/firebase";
@@ -29,33 +37,38 @@ const Login = ({ history }) => {
   };
   return (
     <div className="Login">
-      <Segment stacked>
-        <Header as="h2" color="black">
-          <Icon name={appIconName} />
-          Login to {appName}
-        </Header>
-        <Form onSubmit={login}>
-          <Form.Input
-            icon="mail"
-            placeholder="E-mail address"
-            value={email}
-            iconPosition="left"
-            type="email"
-            onChange={evt => setEmail(evt.target.value)}
-          />
-          <Form.Input
-            icon="lock"
-            value={password}
-            iconPosition="left"
-            type="password"
-            placeholder="Password"
-            onChange={evt => setPassword(evt.target.value)}
-          />
-          <Button size="large" fluid color="black" type="submit">
-            Login
-          </Button>
-        </Form>
-      </Segment>
+      <div>
+        <Segment stacked>
+          <Header as="h2" color="black">
+            <Icon name={appIconName} />
+            Login to {appName}
+          </Header>
+          <Form onSubmit={login}>
+            <Form.Input
+              icon="mail"
+              placeholder="E-mail address"
+              value={email}
+              iconPosition="left"
+              type="email"
+              onChange={evt => setEmail(evt.target.value)}
+            />
+            <Form.Input
+              icon="lock"
+              value={password}
+              iconPosition="left"
+              type="password"
+              placeholder="Password"
+              onChange={evt => setPassword(evt.target.value)}
+            />
+            <Button size="large" fluid color="black" type="submit">
+              Login
+            </Button>
+          </Form>
+        </Segment>
+        <Message>
+          New to us ?<Link to="/register"> Register</Link>
+        </Message>
+      </div>
     </div>
   );
 };

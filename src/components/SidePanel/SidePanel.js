@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, Icon } from "semantic-ui-react";
-import User from "../User";
+import UserMenu from "../UserMenu";
 import Rooms from "../Rooms";
 import { appName, appIconName } from "../../config/constants";
 import "./SidePanel.css";
@@ -12,7 +12,7 @@ const SidePanel = () => {
         <Icon name={appIconName} />
         {appName}
       </Header>
-      <User />
+      <UserMenu />
       <Rooms />
     </div>
   );
