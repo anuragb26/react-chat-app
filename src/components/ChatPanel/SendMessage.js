@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Button } from "semantic-ui-react";
 import firebase from "../../config/firebase";
 import UserContext from "../../context/UserContext";
 import CurrentRoomContext from "../../context/CurrentRoomContext";
@@ -34,7 +35,10 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
         onChange={event => setMessageText(event.target.value)}
         placeholder="insert message"
       />
-      <button
+      <Button
+        size="medium"
+        circular
+        icon="arrow circle right"
         onClick={() => {
           messagesRefFirebasePerRoom
             .child(messageId)
@@ -45,9 +49,7 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
             })
             .catch(err => console.log(`set error: ${err}`));
         }}
-      >
-        Send Message
-      </button>
+      ></Button>
     </div>
   );
 };
