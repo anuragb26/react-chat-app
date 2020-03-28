@@ -7,7 +7,7 @@ import "./SidePanel.css";
 const SidePanel = () => {
   return (
     <div className="SidePanel">
-      <div>Chat App Header</div>
+      <h2>Chat App</h2>
       <User />
       <Rooms />
     </div>

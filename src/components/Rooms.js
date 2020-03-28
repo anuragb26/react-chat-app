@@ -45,8 +45,8 @@ const Rooms = () => {
   ));
   return (
     <div>
-      <p>rooms: (...)</p>
       <button onClick={() => addRoom()}>Add Room</button>
+      <h4>rooms: ({rooms.length})</h4>
       <ul>{roomElements}</ul>
     </div>
   );

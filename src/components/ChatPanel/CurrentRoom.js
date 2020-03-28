@@ -6,7 +6,7 @@ const CurrentRoom = ({ messages }) => {
   const distinctUsers = [...new Set([messages.map(m => m.user.id)])].length;
   return (
     <div>
-      <p>{currentRoom.name}</p>
+      <h4>{currentRoom.name}</h4>
       <p>{distinctUsers} users</p>
     </div>
   );
