@@ -16,10 +16,12 @@ const useForm = (initialState, validate, formSubmitApi) => {
       }
     }
   }, [errors, isSubmitting]);
+
   useEffect(() => {
     const validationErrors = validate(values);
     setErrors(validationErrors);
   }, [values]);
+
   const handleSubmit = event => {
     event.preventDefault();
     const validationErrors = validate(values);

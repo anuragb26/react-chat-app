@@ -25,7 +25,7 @@ const Login = ({ history }) => {
     values,
     errors,
     handleChange,
-    // handleBlur,
+
     handleSubmit
   } = useForm(INITIAL_VALUES, validateLogin, login);
 
@@ -39,6 +39,7 @@ const Login = ({ history }) => {
       const loggedInUser = await firebase
         .auth()
         .signInWithEmailAndPassword(emailVal, passwordVal);
+
       setUser({
         displayName: loggedInUser.user.displayName,
         uid: loggedInUser.user.uid,

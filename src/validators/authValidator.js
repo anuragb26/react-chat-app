@@ -25,13 +25,13 @@ export const validateRegister = values => {
   // Password Errors
   if (!values.password.value) {
     errors.password = "Required Password";
-  } else if (values.password.value.length < 4) {
-    errors.password = "Password must be at least 4 characters";
+  } else if (values.password.value.length < 5) {
+    errors.password = "Password must be at least 5 characters";
   }
   if (!values.displayName.value) {
-    errors.password = "Required Display Name";
-  } else if (values.password.value.length < 4) {
-    errors.password = "Password must be at least 4 characters";
+    errors.displayName = "Required Display Name";
+  } else if (values.displayName.value.length < 4) {
+    errors.displayName = "Display Name must be at least 4 characters";
   }
 
   return errors;
