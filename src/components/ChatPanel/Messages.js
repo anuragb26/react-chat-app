@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import moment from "moment";
 import { Comment } from "semantic-ui-react";
 import "./Messages.css";
@@ -20,7 +20,19 @@ const Messages = ({ messages }) => {
       ))}
     </Comment.Group>
   );
-  return <div className={"Messages"}>{messageElements}</div>;
+  const messageEndRef = useRef();
+  useEffect(() => {
+    messageEndRef.current.scrollIntoView({
+      behavior: "smooth"
+    });
+  }, [messageElements]);
+
+  return (
+    <div className="MessageWrapper">
+      <div className={"Messages"}>{messageElements}</div>
+      <div ref={messageEndRef}></div>
+    </div>
+  );
 };
 
 export default Messages;

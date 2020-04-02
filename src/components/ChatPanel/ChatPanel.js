@@ -9,6 +9,7 @@ import "./ChatPanel.css";
 const ChatPanel = () => {
   const [messages, setMessages] = useState([]);
   const messagesRef = useRef();
+
   const { currentRoom } = useContext(CurrentRoomContext);
   messagesRef.current = messages;
   const messagesRefFirebase = firebase.database().ref("messages");

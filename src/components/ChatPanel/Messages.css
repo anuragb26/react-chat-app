@@ -2,3 +2,9 @@
   flex-grow: 1;
   background-color: #fefefe;
 }
+
+.MessageWrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
