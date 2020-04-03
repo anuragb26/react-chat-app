@@ -1,2 +1,2 @@
 export const appName = "Chat App";
-export const appIconName = "wechat";
+export const appIconName = "rocketchat";

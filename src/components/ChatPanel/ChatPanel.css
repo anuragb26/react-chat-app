@@ -3,4 +3,5 @@
   flex-direction: column;
   flex-grow: 1;
   background-color: #e9e6ea;
+  position: relative;
 }
