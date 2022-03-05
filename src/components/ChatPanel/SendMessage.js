@@ -9,27 +9,27 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
   const { user } = useContext(UserContext);
   const { currentRoom } = useContext(CurrentRoomContext);
   const [messageText, setMessageText] = useState("");
-  const createMessage = messageId => ({
+  const createMessage = (messageId) => ({
     id: messageId,
     text: messageText,
     roomId: currentRoom.id,
     timestamp: firebase.database.ServerValue.TIMESTAMP,
-    user
+    user,
   });
-  const messageId = messagesRefFirebasePerRoom.push().key;
+  const messageId = messagesRefFirebasePerRoom.current.push().key;
   // console.log("messageId", messageId);
   const message = createMessage(messageId);
 
-  const sendMessage = event => {
+  const sendMessage = (event) => {
     event.preventDefault();
-    messagesRefFirebasePerRoom
+    messagesRefFirebasePerRoom.current
       .child(messageId)
       .set(message)
-      .then(msg => {
+      .then((msg) => {
         //    console.log(`set success: ${msg}`);
         setMessageText("");
       })
-      .catch(err => console.log(`set error: ${err}`));
+      .catch((err) => console.log(`set error: ${err}`));
   };
   return (
     <div className="SendMessage">
@@ -37,7 +37,7 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
         <input
           type="text"
           value={messageText}
-          onChange={event => setMessageText(event.target.value)}
+          onChange={(event) => setMessageText(event.target.value)}
           placeholder="insert message"
         />
 

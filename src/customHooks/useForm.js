@@ -15,23 +15,23 @@ const useForm = (initialState, validate, formSubmitApi) => {
         setSubmitting(true);
       }
     }
-  }, [errors, isSubmitting]);
+  }, [errors, isSubmitting, formSubmitApi]);
 
   useEffect(() => {
     const validationErrors = validate(values);
     setErrors(validationErrors);
-  }, [values]);
+  }, [values, validate]);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const validationErrors = validate(values);
     setErrors(validationErrors);
     setSubmitting(true);
   };
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValues({
       ...values,
-      [event.target.name]: { value: event.target.value, touched: true }
+      [event.target.name]: { value: event.target.value, touched: true },
     });
   };
 
@@ -39,7 +39,7 @@ const useForm = (initialState, validate, formSubmitApi) => {
     values,
     handleChange,
     handleSubmit,
-    errors
+    errors,
   };
 };
 

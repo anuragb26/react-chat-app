@@ -12,7 +12,7 @@ const Root = () => {
   const [user, setUser] = useState({ displayName: "", uid: "", photoURL: "" });
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const { displayName, uid, photoURL } = user;
         setUser({ displayName, uid, photoURL });
@@ -23,7 +23,7 @@ const Root = () => {
         // navigate to login
       }
     });
-  }, []);
+  }, [history]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
