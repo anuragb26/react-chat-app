@@ -54,7 +54,7 @@ const Login = ({ history }) => {
     }
   }
   return (
-    <div className="Login">
+    <Container maxWidth="sm" sx={{ display: "flex" }} className="login">
       <div>
         <Paper
           elevation={12}
@@ -150,7 +150,7 @@ const Login = ({ history }) => {
           New to us ?<Link to="/register"> Register</Link>
         </Alert>
       </div>
-    </div>
+    </Container>
   );
 };
 
