@@ -54,7 +54,7 @@ const Login = ({ history }) => {
     }
   }
   return (
-    <Container maxWidth="sm" sx={{ display: "flex" }} className="login">
+    <Container sx={{ display: "flex" }} className="login">
       <div>
         <Paper
           elevation={12}
@@ -145,7 +145,7 @@ const Login = ({ history }) => {
         </Paper>
         <Alert
           severity="info"
-          sx={{ display: "flex", justifyContent: "center" }}
+          sx={{ display: "flex", justifyContent: "center", mt: "8px" }}
         >
           New to us ?<Link to="/register"> Register</Link>
         </Alert>
