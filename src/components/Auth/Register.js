@@ -1,12 +1,18 @@
 import React, { useContext, useState } from "react";
 import {
-  Header,
-  Icon,
-  Form,
+  Container,
+  Paper,
+  Typography,
+  Grid,
+  Input,
+  FormControl,
+  Alert,
   Button,
-  Segment,
-  Message
-} from "semantic-ui-react";
+} from "@mui/material";
+import ChatIcon from "@mui/icons-material/Chat";
+import EmailIcon from "@mui/icons-material/Email";
+import PasswordIcon from "@mui/icons-material/Password";
+import PersonIcon from "@mui/icons-material/Person";
 import { appName, appIconName } from "../../config/constants";
 import UserContext from "../../context/UserContext";
 import firebase from "../../config/firebase";
@@ -17,7 +23,7 @@ import "./Register.css";
 const INITIAL_VALUES = {
   email: { value: "", touched: false },
   password: { value: "", touched: false },
-  displayName: { value: "", touched: false }
+  displayName: { value: "", touched: false },
 };
 
 const getRandomLegoDisplayPic = () =>
@@ -38,7 +44,7 @@ const Register = ({ history }) => {
     const {
       email: { value: emailVal },
       password: { value: passwordVal },
-      displayName: { value: displayNameVal }
+      displayName: { value: displayNameVal },
     } = values;
 
     try {
@@ -48,16 +54,17 @@ const Register = ({ history }) => {
       const photoURL = getRandomLegoDisplayPic();
       await createdUser.user.updateProfile({
         displayName: displayNameVal,
-        photoURL
+        photoURL,
       });
       setUser({
         displayName: displayNameVal,
         photoURL,
-        uid: createdUser.user.uid
+        uid: createdUser.user.uid,
       });
       history.push("/");
     } catch (err) {
-      setFirebaseError(err);
+      console.log("err", err);
+      setFirebaseError(err.message);
     }
     /*
     firebase
@@ -73,68 +80,116 @@ const Register = ({ history }) => {
       */
   }
 
-  const showError = (error, key) =>
-    values[key].touched && error[key] ? (
-      <Message negative>{error[key]}</Message>
-    ) : null;
+  // const showError = (error, key) =>
+  //   values[key].touched && error[key] ? (
+  //     <Message negative>{error[key]}</Message>
+  //   ) : null;
 
   return (
-    <div className="Register">
-      <Segment stacked>
-        <Header as="h2" color="black">
-          <Icon name={appIconName} />
-          Register to {appName}
-        </Header>
-        <Form onSubmit={handleSubmit}>
-          <Form.Input
-            icon="user"
-            placeholder="Display Name"
-            iconPosition="left"
-            value={values.displayName.value}
-            type="text"
-            name="displayName"
-            onChange={handleChange}
-          />
-          {showError(errors, "displayName")}
-          <Form.Input
-            icon="mail"
-            placeholder="E-mail address"
-            value={values.email.value}
-            iconPosition="left"
-            type="email"
-            name="email"
-            onChange={handleChange}
-          />
-          {showError(errors, "email")}
-          <Form.Input
-            icon="lock"
-            value={values.password.value}
-            iconPosition="left"
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-          />
-          {showError(errors, "password")}
-
-          <Button
-            size="large"
-            fluid
-            color="black"
-            type="submit"
-            disabled={
-              Object.keys(errors).length > 0 ||
-              Object.keys(values)
-                .map(val => values[val].touched)
-                .every(touched => !touched)
-            }
-          >
-            Register
-          </Button>
-          {firebaseError ? <Message>{firebaseError}</Message> : null}
-        </Form>
-      </Segment>
-    </div>
+    <Container sx={{ display: "flex" }} className="register">
+      <Paper
+        elevation={12}
+        sx={{ paddingTop: "16px", paddingBottom: "16px", maxWidth: "485px" }}
+      >
+        <Container maxWidth="sm">
+          <Grid container={true} sx={{ marginBottom: "8px" }}>
+            <Grid item={true} xs={1} sx={{ position: "relative", top: "4px" }}>
+              <ChatIcon />
+            </Grid>
+            <Grid item={true} xs={11}>
+              <Typography variant="h5" component="h5">
+                Register to {appName}
+              </Typography>
+            </Grid>
+          </Grid>
+          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+            <Grid container={true}>
+              <Grid
+                item={true}
+                xs={1}
+                sx={{ mb: "8px", position: "relative", top: "4px" }}
+              >
+                <EmailIcon />
+              </Grid>
+              <Grid item={true} xs={11} sx={{ mb: "8px" }}>
+                <FormControl fullWidth={true}>
+                  <Input
+                    placeholder="E-mail address"
+                    value={values.email.value}
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    fullWidth={true}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid
+                item={true}
+                xs={1}
+                sx={{ mb: "8px", position: "relative", top: "4px" }}
+              >
+                <PasswordIcon />
+              </Grid>
+              <Grid item={true} xs={11} sx={{ mb: "8px" }}>
+                <FormControl fullWidth={true}>
+                  <Input
+                    value={values.password.value}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    fullWidth={true}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid
+                item={true}
+                xs={1}
+                sx={{ mb: "8px", position: "relative", top: "4px" }}
+              >
+                {<PersonIcon />}
+              </Grid>
+              <Grid item={true} xs={11} sx={{ mb: "8px" }}>
+                <FormControl fullWidth={true}>
+                  <Input
+                    placeholder="Display Name"
+                    value={values.displayName.value}
+                    type="text"
+                    name="displayName"
+                    onChange={handleChange}
+                    fullWidth={true}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item={true} xs={12} sx={{ mb: "8px" }}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    bgcolor: "black",
+                    ":hover": {
+                      backgroundColor: "black",
+                    },
+                  }}
+                  fullWidth={true}
+                  disabled={
+                    Object.keys(errors).length > 0 ||
+                    Object.keys(values)
+                      .map((val) => values[val].touched)
+                      .every((touched) => !touched)
+                  }
+                >
+                  Register
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+          {firebaseError ? (
+            <Alert severity="error">{firebaseError}</Alert>
+          ) : null}
+        </Container>
+      </Paper>
+    </Container>
   );
 };
 

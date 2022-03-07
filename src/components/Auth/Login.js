@@ -55,101 +55,95 @@ const Login = ({ history }) => {
   }
   return (
     <Container sx={{ display: "flex" }} className="login">
-      <div>
-        <Paper
-          elevation={12}
-          sx={{ paddingTop: "16px", paddingBottom: "16px" }}
-        >
-          <Container maxWidth="sm">
-            <Grid container={true} sx={{ marginBottom: "8px" }}>
+      <Paper
+        elevation={12}
+        sx={{ paddingTop: "16px", paddingBottom: "16px", maxWidth: "485px" }}
+      >
+        <Container maxWidth="sm">
+          <Grid container={true} sx={{ marginBottom: "8px" }}>
+            <Grid item={true} xs={1} sx={{ position: "relative", top: "4px" }}>
+              <ChatIcon />
+            </Grid>
+            <Grid item={true} xs={11}>
+              <Typography variant="h5" component="h5">
+                {appName}
+              </Typography>
+            </Grid>
+          </Grid>
+          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+            <Grid container={true}>
               <Grid
                 item={true}
                 xs={1}
-                sx={{ position: "relative", top: "8px" }}
+                sx={{ mb: "8px", position: "relative", top: "4px" }}
               >
-                <ChatIcon />
+                <EmailIcon />
               </Grid>
-              <Grid item={true} xs={11}>
-                <Typography variant="h4" component="h4">
-                  {appName}
-                </Typography>
+              <Grid item={true} xs={11} sx={{ mb: "8px" }}>
+                <FormControl fullWidth={true}>
+                  <Input
+                    placeholder="E-mail address"
+                    value={values.email.value}
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    fullWidth={true}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid
+                item={true}
+                xs={1}
+                sx={{ mb: "8px", position: "relative", top: "4px" }}
+              >
+                <PasswordIcon />
+              </Grid>
+              <Grid item={true} xs={11} sx={{ mb: "8px" }}>
+                <FormControl fullWidth={true}>
+                  <Input
+                    value={values.password.value}
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    fullWidth={true}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item={true} xs={12} sx={{ mb: "8px" }}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    bgcolor: "black",
+                    ":hover": {
+                      backgroundColor: "black",
+                    },
+                  }}
+                  disabled={
+                    Object.keys(errors).length > 0 ||
+                    Object.keys(values)
+                      .map((val) => values[val].touched)
+                      .every((touched) => !touched)
+                  }
+                  fullWidth={true}
+                >
+                  Login
+                </Button>
               </Grid>
             </Grid>
-            <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-              <Grid container={true}>
-                <Grid
-                  item={true}
-                  xs={1}
-                  sx={{ mb: "8px", position: "relative", top: "4px" }}
-                >
-                  <EmailIcon />
-                </Grid>
-                <Grid item={true} xs={11} sx={{ mb: "8px" }}>
-                  <FormControl fullWidth={true}>
-                    <Input
-                      placeholder="E-mail address"
-                      value={values.email.value}
-                      type="email"
-                      name="email"
-                      onChange={handleChange}
-                      fullWidth={true}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid
-                  item={true}
-                  xs={1}
-                  sx={{ mb: "8px", position: "relative", top: "4px" }}
-                >
-                  <PasswordIcon />
-                </Grid>
-                <Grid item={true} xs={11} sx={{ mb: "8px" }}>
-                  <FormControl fullWidth={true}>
-                    <Input
-                      value={values.password.value}
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={handleChange}
-                      fullWidth={true}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item={true} xs={12} sx={{ mb: "8px" }}>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{
-                      bgcolor: "black",
-                      ":hover": {
-                        backgroundColor: "black",
-                      },
-                    }}
-                    disabled={
-                      Object.keys(errors).length > 0 ||
-                      Object.keys(values)
-                        .map((val) => values[val].touched)
-                        .every((touched) => !touched)
-                    }
-                    fullWidth={true}
-                  >
-                    Login
-                  </Button>
-                </Grid>
-              </Grid>
-            </form>
-            {firebaseError ? (
-              <Alert severity="error">{firebaseError}</Alert>
-            ) : null}
-          </Container>
-        </Paper>
-        <Alert
-          severity="info"
-          sx={{ display: "flex", justifyContent: "center", mt: "8px" }}
-        >
-          New to us ?<Link to="/register"> Register</Link>
-        </Alert>
-      </div>
+          </form>
+          {firebaseError ? (
+            <Alert severity="error">{firebaseError}</Alert>
+          ) : null}
+        </Container>
+      </Paper>
+      <Alert
+        severity="info"
+        sx={{ display: "flex", justifyContent: "center", mt: "8px" }}
+      >
+        New to us ?<Link to="/register"> Register</Link>
+      </Alert>
     </Container>
   );
 };
