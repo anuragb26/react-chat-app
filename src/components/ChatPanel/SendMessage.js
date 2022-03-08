@@ -26,13 +26,12 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
       .child(messageId)
       .set(message)
       .then((msg) => {
-        //    console.log(`set success: ${msg}`);
         setMessageText("");
       })
       .catch((err) => console.log(`set error: ${err}`));
   };
   return (
-    <div className="SendMessage">
+    <div className="send-message">
       <Form onSubmit={sendMessage}>
         <input
           type="text"

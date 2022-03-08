@@ -1,11 +1,10 @@
-.Messages {
-  flex-grow: 1;
+.messages {
   background-color: #fefefe;
 }
 
-.MessageWrapper {
+.message-wrapper {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 80%;
+  background-color: white;
 }

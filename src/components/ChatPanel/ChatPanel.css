@@ -1,7 +1,7 @@
-.ChatPanel {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+.chat-panel {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 7fr 1fr;
   background-color: #e9e6ea;
-  position: relative;
+  grid-gap: 10px;
 }

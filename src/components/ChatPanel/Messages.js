@@ -23,13 +23,13 @@ const Messages = ({ messages }) => {
   const messageEndRef = useRef();
   useEffect(() => {
     messageEndRef.current.scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }, [messageElements]);
 
   return (
-    <div className="MessageWrapper">
-      <div className={"Messages"}>{messageElements}</div>
+    <div className="message-wrapper">
+      <div className="messages">{messageElements}</div>
       <div ref={messageEndRef}></div>
     </div>
   );

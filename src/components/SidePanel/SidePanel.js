@@ -1,5 +1,6 @@
 import React from "react";
-import { Header, Icon } from "semantic-ui-react";
+import ChatIcon from "@mui/icons-material/Chat";
+import { Typography, Grid, Box } from "@mui/material";
 import UserMenu from "../UserMenu";
 import Rooms from "../Rooms";
 import { appName, appIconName } from "../../config/constants";
@@ -7,14 +8,22 @@ import "./SidePanel.css";
 
 const SidePanel = () => {
   return (
-    <div className="SidePanel">
-      <Header inverted as="h2">
-        <Icon name={appIconName} />
-        {appName}
-      </Header>
-      <UserMenu />
-      <Rooms />
-    </div>
+    <React.Fragment>
+      <Box sx={{ display: "flex", overflow: "hidden", gap: "5px" }}>
+        <div style={{ flexGrow: 1 }}>
+          <ChatIcon />
+        </div>
+        <div style={{ flexGrow: 2 }}>
+          <Typography variant="h5">{appName}</Typography>
+        </div>
+      </Box>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", overflow: "hidden" }}
+      >
+        <UserMenu />
+        <Rooms />
+      </Box>
+    </React.Fragment>
   );
 };
 

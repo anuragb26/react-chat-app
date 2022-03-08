@@ -1,8 +1,8 @@
-.ChatApp {
+.chat-app {
   display: flex;
   height: 100vh;
 }
 
-.ChatApp h3 {
+.chat-app h3 {
   padding: 5px;
 }
