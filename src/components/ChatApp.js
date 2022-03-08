@@ -32,7 +32,11 @@ const ChatApp = () => {
           </Box>
         </Grid>
         <Grid item={true} sx={{ height: "100%" }} xs={9} sm={11}>
-          {currentRoom ? <ChatPanel /> : <h3>Please select a room</h3>}
+          {currentRoom ? (
+            <ChatPanel />
+          ) : (
+            <h3 style={{ padding: "1rem" }}>Please select a room</h3>
+          )}
         </Grid>
       </CurrentRoomContext.Provider>
     </Grid>

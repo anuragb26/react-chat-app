@@ -1,3 +1,7 @@
-.User > h4 {
+.user {
+  display: flex;
+}
+
+.user > h4 {
   display: inline;
 }

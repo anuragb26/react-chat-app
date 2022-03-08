@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Avatar, Select, MenuItem } from "@mui/material";
 import UserContext from "../context/UserContext";
 import CurrentRoomContext from "../context/CurrentRoomContext";
-import { Image } from "semantic-ui-react";
 import firebase from "../config/firebase";
 import "./UserMenu.css";
 
 const UserMenu = () => {
   const { user } = useContext(UserContext);
   const { setCurrentRoom } = useContext(CurrentRoomContext);
-
   const logout = () => {
     firebase
       .auth()
@@ -20,15 +18,51 @@ const UserMenu = () => {
       })
       .catch(() => {});
   };
-
+  const handleChange = (event) => {
+    if (event.target.value === "logout") {
+      logout();
+    }
+  };
   return (
-    <div className="User">
-      <Image src={user.photoURL} avatar />
-      <Dropdown text={user.displayName} as="h4">
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={logout} text="Logout" />
-        </Dropdown.Menu>
-      </Dropdown>
+    <div className="user">
+      <Avatar
+        src={user.photoURL}
+        alt="avatar"
+        sx={{ width: "30px", height: "30px" }}
+      />
+      <Select
+        value={user.displayName}
+        label={user.displayName}
+        sx={{
+          color: "white",
+          "& .MuiSelect-select": {
+            border: "0px",
+            paddingRight: "4px",
+            paddingLeft: "8px",
+            paddingTop: "0px",
+            paddingBottom: "0px",
+          },
+          "& fieldset": {
+            border: "0",
+          },
+          "& svg": {
+            color: "white",
+          },
+        }}
+        onChange={handleChange}
+        MenuProps={{
+          PaperProps: { sx: { "& .MuiList-root": {} } },
+        }}
+      >
+        <MenuItem
+          value={user.displayName}
+          label={user.displayName}
+          style={{ display: "none" }}
+        >
+          {user.displayName}
+        </MenuItem>
+        <MenuItem value="logout">Logout</MenuItem>
+      </Select>
     </div>
   );
 };
