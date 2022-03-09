@@ -14,13 +14,27 @@ const SidePanel = () => {
           display: "flex",
           overflow: "hidden",
           gap: "5px",
-          flexDirection: { md: "row", xs: "column" },
+          flexDirection: "row",
         }}
       >
-        <div style={{ flexGrow: 1 }}>
+        <div
+          style={{
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <ChatIcon />
         </div>
-        <div style={{ flexGrow: 2 }}>
+        <div
+          style={{
+            flexGrow: 2,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Typography variant="h5">{appName}</Typography>
         </div>
       </Box>
