@@ -9,7 +9,14 @@ import "./SidePanel.css";
 const SidePanel = () => {
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", overflow: "hidden", gap: "5px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          overflow: "hidden",
+          gap: "5px",
+          flexDirection: { md: "row", xs: "column" },
+        }}
+      >
         <div style={{ flexGrow: 1 }}>
           <ChatIcon />
         </div>

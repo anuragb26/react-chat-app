@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Avatar, Select, MenuItem } from "@mui/material";
+import { Avatar, Select, MenuItem, Box } from "@mui/material";
 import UserContext from "../context/UserContext";
 import CurrentRoomContext from "../context/CurrentRoomContext";
 import firebase from "../config/firebase";
@@ -24,7 +24,7 @@ const UserMenu = () => {
     }
   };
   return (
-    <div className="user">
+    <Box sx={{ display: "flex", flexDirection: "row" }}>
       <Avatar
         src={user.photoURL}
         alt="avatar"
@@ -63,7 +63,7 @@ const UserMenu = () => {
         </MenuItem>
         <MenuItem value="logout">Logout</MenuItem>
       </Select>
-    </div>
+    </Box>
   );
 };
 

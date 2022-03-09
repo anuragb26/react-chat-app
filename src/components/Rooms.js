@@ -38,8 +38,8 @@ const Rooms = () => {
     </li>
   ));
   return (
-    <div className="Rooms">
-      <div className="RoomsHeader">
+    <div className="rooms">
+      <div className="rooms-header">
         <h4>rooms: ({rooms.length})</h4>
         <AddRoomModal roomsRefFireBase={roomsRefFireBase} />
       </div>

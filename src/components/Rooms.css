@@ -1,11 +1,15 @@
-.Rooms li {
+.rooms li {
   cursor: pointer;
 }
-.RoomsHeader {
+.rooms-header {
   display: flex;
   margin-top: 10px;
 }
 
-.RoomsHeader > h4 {
+.rooms ul {
+  margin: 0 auto;
+  padding-left: 1rem;
+}
+.rooms-header > h4 {
   margin-right: 10px;
 }

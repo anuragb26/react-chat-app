@@ -29,7 +29,7 @@ const Messages = ({ messages }) => {
 
   return (
     <div className="message-wrapper">
-      <div className="messages">{messageElements}</div>
+      {messageElements}
       <div ref={messageEndRef}></div>
     </div>
   );

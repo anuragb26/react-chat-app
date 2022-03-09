@@ -10,14 +10,19 @@ const ChatApp = () => {
   const [currentRoom, setCurrentRoom] = useState(null);
 
   return (
-    <Grid container={true} sx={{ height: "100vh" }}>
+    <Grid
+      container={true}
+      sx={{
+        height: "100vh",
+        display: "grid",
+        gridTemplateColumns: {
+          md: "1fr 8fr",
+          xs: "3fr 6fr",
+        },
+      }}
+    >
       <CurrentRoomContext.Provider value={{ currentRoom, setCurrentRoom }}>
-        <Grid
-          item={true}
-          sx={{ height: "100%", flexGap: "10px" }}
-          xs={3}
-          sm={1}
-        >
+        <Box sx={{ height: "100%", flexGap: "10px" }}>
           <Box
             sx={{
               backgroundColor: "#3c2f3e",
@@ -25,19 +30,21 @@ const ChatApp = () => {
               color: "white",
               height: "100%",
               display: "grid",
-              gridTemplateRows: "1fr 9fr",
+              gridTemplateRows: "1fr minmax(0,9fr)",
+              minHeight: 0,
+              minWidth: 0,
             }}
           >
             <SidePanel />
           </Box>
-        </Grid>
-        <Grid item={true} sx={{ height: "100%" }} xs={9} sm={11}>
+        </Box>
+        <Box item={true} sx={{ height: "100%", minHeight: 0, minWidth: 0 }}>
           {currentRoom ? (
             <ChatPanel />
           ) : (
             <h3 style={{ padding: "1rem" }}>Please select a room</h3>
           )}
-        </Grid>
+        </Box>
       </CurrentRoomContext.Provider>
     </Grid>
   );
