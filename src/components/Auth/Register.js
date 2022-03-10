@@ -13,6 +13,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import PersonIcon from "@mui/icons-material/Person";
+import { StyledPaper } from "../common/Paper";
 import { appName, appIconName } from "../../config/constants";
 import UserContext from "../../context/UserContext";
 import firebase from "../../config/firebase";
@@ -63,34 +64,13 @@ const Register = ({ history }) => {
       });
       history.push("/");
     } catch (err) {
-      console.log("err", err);
       setFirebaseError(err.message);
     }
-    /*
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(createdUser => {
-        createdUser.user.updateProfile({ displayName, photoURL }).then(() => {
-          setUser({ displayName, photoURL, uid: createdUser.user.uid });
-          history.push("/");
-        });
-        // add user to firebase
-      });
-      */
   }
-
-  // const showError = (error, key) =>
-  //   values[key].touched && error[key] ? (
-  //     <Message negative>{error[key]}</Message>
-  //   ) : null;
 
   return (
     <Container sx={{ display: "flex" }} className="register">
-      <Paper
-        elevation={12}
-        sx={{ paddingTop: "16px", paddingBottom: "16px", maxWidth: "485px" }}
-      >
+      <StyledPaper elevation={12} color={"red"}>
         <Container maxWidth="sm">
           <Grid container={true} sx={{ marginBottom: "8px" }}>
             <Grid item={true} xs={1} sx={{ position: "relative", top: "4px" }}>
@@ -188,7 +168,7 @@ const Register = ({ history }) => {
             <Alert severity="error">{firebaseError}</Alert>
           ) : null}
         </Container>
-      </Paper>
+      </StyledPaper>
     </Container>
   );
 };

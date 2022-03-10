@@ -12,6 +12,7 @@ import {
 import ChatIcon from "@mui/icons-material/Chat";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
+import { StyledPaper } from "../common/Paper";
 import { Link } from "react-router-dom";
 import { appName } from "../../config/constants";
 import UserContext from "../../context/UserContext";
@@ -55,10 +56,7 @@ const Login = ({ history }) => {
   }
   return (
     <Container sx={{ display: "flex" }} className="login">
-      <Paper
-        elevation={12}
-        sx={{ paddingTop: "16px", paddingBottom: "16px", maxWidth: "485px" }}
-      >
+      <StyledPaper elevation={12}>
         <Container maxWidth="sm">
           <Grid container={true} sx={{ marginBottom: "8px" }}>
             <Grid item={true} xs={1} sx={{ position: "relative", top: "4px" }}>
@@ -137,7 +135,7 @@ const Login = ({ history }) => {
             <Alert severity="error">{firebaseError}</Alert>
           ) : null}
         </Container>
-      </Paper>
+      </StyledPaper>
       <Alert
         severity="info"
         sx={{ display: "flex", justifyContent: "center", mt: "8px" }}
