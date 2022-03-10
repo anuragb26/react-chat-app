@@ -1,6 +1,21 @@
 import React, { useState } from "react";
-import { Modal, Header, Form, Button, Icon } from "semantic-ui-react";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Slide,
+  FormControl,
+  Input,
+  Button,
+} from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import CancelIcon from "@mui/icons-material/Cancel";
 import "./AddRoomModal.css";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const AddRoomModal = ({ roomsRefFireBase }) => {
   const [roomName, setRoomName] = useState("");
@@ -14,60 +29,65 @@ const AddRoomModal = ({ roomsRefFireBase }) => {
     const newRoom = {
       id: roomId,
       name: roomName,
-      description: description
+      description: description,
     };
     roomsRefFireBase
       .child(roomId)
       .set(newRoom)
       .then(() => console.log("new room"))
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
   return (
     <div className="AddRoomModal">
-      <Modal
-        trigger={<span onClick={handleOpen}>+</span>}
+      <span onClick={handleOpen}>+</span>
+      <Dialog
         open={modalOpen}
+        TransitionComponent={Transition}
         OnClose={handleClose}
         basic
-        size="small"
+        keepMounted
       >
-        <Header content="Add a chat room" />
-        <Modal.Content>
-          <Form onSubmit={addRoom}>
-            <Form.Field>
-              <input
+        <DialogTitle>Add a chat room</DialogTitle>
+        <DialogContent>
+          <form onSubmit={addRoom}>
+            <FormControl fullWidth={true}>
+              <Input
                 placeholder="Name"
                 value={roomName}
-                onChange={evt => setRoomName(evt.target.value)}
+                type="text"
+                onChange={(evt) => setRoomName(evt.target.value)}
+                fullWidth={true}
               />
-            </Form.Field>
-            <Form.Field>
-              <input
+            </FormControl>
+            <FormControl fullWidth={true}>
+              <Input
                 placeholder="Description"
                 value={description}
-                onChange={evt => setDescription(evt.target.value)}
+                type="text"
+                onChange={(evt) => setDescription(evt.target.value)}
+                fullWidth={true}
               />
-            </Form.Field>
-          </Form>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button color="red" inverted onClick={handleClose}>
-            <Icon name="remove" />
-            Cancel
+            </FormControl>
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined" color="error" onClick={handleClose}>
+            <span style={{ paddingRight: "8px" }}>Cancel</span>
+            <CheckIcon />
           </Button>
           <Button
-            color="green"
-            inverted
+            variant="contained"
+            color="success"
             onClick={() => {
               addRoom();
               handleClose();
             }}
           >
-            <Icon name="checkmark" />
-            Add
+            <span style={{ paddingRight: "8px" }}>Add</span>
+            <CancelIcon />
           </Button>
-        </Modal.Actions>
-      </Modal>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

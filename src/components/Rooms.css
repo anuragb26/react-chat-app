@@ -1,3 +1,6 @@
+.rooms {
+  margin: 0 auto;
+}
 .rooms li {
   cursor: pointer;
 }
