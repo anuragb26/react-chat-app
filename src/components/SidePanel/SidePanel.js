@@ -3,7 +3,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import { Typography, Box } from "@mui/material";
 import UserMenu from "../UserMenu";
 import Rooms from "../Rooms";
-import { appName, appIconName } from "../../config/constants";
+import { appName } from "../../config/constants";
 import "./SidePanel.css";
 
 const SidePanel = () => {

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
   Container,
-  Paper,
   Typography,
   Grid,
   Input,
@@ -14,7 +13,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import PersonIcon from "@mui/icons-material/Person";
 import { StyledPaper } from "../common/Paper";
-import { appName, appIconName } from "../../config/constants";
+import { appName } from "../../config/constants";
 import UserContext from "../../context/UserContext";
 import firebase from "../../config/firebase";
 import { validateRegister } from "../../validators/authValidator";
