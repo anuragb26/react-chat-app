@@ -1,14 +1,13 @@
 .send-message {
   display: flex;
-  /* background-color: #fefefe; */
   padding: 5px;
   width: 100%;
+  flex-grow: 1;
 }
 
 .send-message > form {
-  display: grid;
+  display: flex;
   flex-grow: 1;
-  grid-template-columns: 19fr 1fr;
 }
 .send-message > input {
   flex-grow: 1;

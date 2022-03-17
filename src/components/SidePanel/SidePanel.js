@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import { Typography, Box } from "@mui/material";
 import UserMenu from "../UserMenu";
 import Rooms from "../Rooms";
 import { appName } from "../../config/constants";
+import ThemeContext from "../../context/ThemeContext";
 import "./SidePanel.css";
 
 const SidePanel = () => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <React.Fragment>
+    <Box
+      sx={{
+        padding: { xs: "0", md: "1rem" },
+        height: "100%",
+        display: "grid",
+        gridTemplateRows: "1fr minmax(0,9fr)",
+        minHeight: 0,
+        minWidth: 0,
+        ...theme.sidePanel,
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -44,7 +56,7 @@ const SidePanel = () => {
         <UserMenu />
         <Rooms />
       </Box>
-    </React.Fragment>
+    </Box>
   );
 };
 

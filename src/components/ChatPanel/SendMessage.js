@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Input } from "@mui/material";
 import firebase from "../../config/firebase";
 import UserContext from "../../context/UserContext";
 import CurrentRoomContext from "../../context/CurrentRoomContext";
+import ThemeContext from "../../context/ThemeContext";
 import "./SendMessage.css";
 
 const SendMessage = ({ messagesRefFirebasePerRoom }) => {
   const { user } = useContext(UserContext);
   const { currentRoom } = useContext(CurrentRoomContext);
+  const { theme } = useContext(ThemeContext);
   const [messageText, setMessageText] = useState("");
   const createMessage = (messageId) => ({
     id: messageId,
@@ -17,7 +19,6 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
     user,
   });
   const messageId = messagesRefFirebasePerRoom.current.push().key;
-  // console.log("messageId", messageId);
   const message = createMessage(messageId);
 
   const sendMessage = (event) => {
@@ -31,22 +32,17 @@ const SendMessage = ({ messagesRefFirebasePerRoom }) => {
       .catch((err) => console.log(`set error: ${err}`));
   };
   return (
-    <div className="send-message">
-      <Form onSubmit={sendMessage}>
-        <input
+    <div className="send-message" style={theme.chatInputText}>
+      <form onSubmit={sendMessage}>
+        <Input
           type="text"
           value={messageText}
           onChange={(event) => setMessageText(event.target.value)}
-          placeholder="insert message"
+          placeholder="Enter message"
+          fullWidth={true}
+          sx={{ color: theme.chatInputText.color }}
         />
-
-        <Button
-          size="medium"
-          circular
-          icon="arrow circle right"
-          onClick={sendMessage}
-        ></Button>
-      </Form>
+      </form>
     </div>
   );
 };

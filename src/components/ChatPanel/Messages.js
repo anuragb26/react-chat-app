@@ -1,25 +1,43 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import moment from "moment";
-import { Comment } from "semantic-ui-react";
+import { Avatar, Box } from "@mui/material";
+import ThemeContext from "../../context/ThemeContext";
 import "./Messages.css";
 
 const Messages = ({ messages }) => {
-  const messageElements = (
-    <Comment.Group>
-      {messages.map((item, index) => (
-        <Comment key={index}>
-          <Comment.Avatar src={item.user.photoURL} />
-          <Comment.Content>
-            <Comment.Author>{item.user.displayName}</Comment.Author>
-            <Comment.Metadata>
-              {moment(item.timestamp).fromNow()}
-            </Comment.Metadata>
-            <Comment.Text>{item.text}</Comment.Text>
-          </Comment.Content>
-        </Comment>
-      ))}
-    </Comment.Group>
-  );
+  const { theme } = useContext(ThemeContext);
+  const messageElements = messages.map((item, index) => (
+    <Box
+      key={index}
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        gap: "10px",
+        marginBottom: "0.5rem",
+        marginTop: "0.5rem",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Avatar
+          src={item.user.photoURL}
+          alt="avatar"
+          sx={{ width: "40px", height: "40px" }}
+        />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", flexGrow: "3" }}>
+        <div className="display-name">{item.user.displayName}</div>
+        <div className="time-stamp">{moment(item.timestamp).fromNow()}</div>
+        <div className="text">{item.text}</div>
+      </div>
+    </Box>
+  ));
   const messageEndRef = useRef();
   useEffect(() => {
     messageEndRef.current.scrollIntoView({
@@ -28,7 +46,7 @@ const Messages = ({ messages }) => {
   }, [messageElements]);
 
   return (
-    <div className="message-wrapper">
+    <div className="message-wrapper" style={theme.message}>
       {messageElements}
       <div ref={messageEndRef}></div>
     </div>

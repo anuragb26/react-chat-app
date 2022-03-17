@@ -1,10 +1,19 @@
-.messages {
-  background-color: #fefefe;
-}
-
 .message-wrapper {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  background-color: white;
+}
+
+.display-name {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.time-stamp {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.text {
+  margin-left: 0.5rem;
 }
