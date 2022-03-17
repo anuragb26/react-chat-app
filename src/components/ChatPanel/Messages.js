@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect } from "react";
 import moment from "moment";
 import { Avatar, Box } from "@mui/material";
-import ThemeContext from "../../context/ThemeContext";
+import useTheme from "../../customHooks/useTheme";
 import "./Messages.css";
 
 const Messages = ({ messages }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const messageElements = messages.map((item, index) => (
     <Box
       key={index}

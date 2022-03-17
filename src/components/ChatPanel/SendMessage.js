@@ -3,13 +3,13 @@ import { Input } from "@mui/material";
 import firebase from "../../config/firebase";
 import UserContext from "../../context/UserContext";
 import CurrentRoomContext from "../../context/CurrentRoomContext";
-import ThemeContext from "../../context/ThemeContext";
+import useTheme from "../../customHooks/useTheme";
 import "./SendMessage.css";
 
 const SendMessage = ({ messagesRefFirebasePerRoom }) => {
   const { user } = useContext(UserContext);
   const { currentRoom } = useContext(CurrentRoomContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const [messageText, setMessageText] = useState("");
   const createMessage = (messageId) => ({
     id: messageId,

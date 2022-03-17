@@ -5,12 +5,12 @@ import { MaterialUISwitch } from "../ThemeSwitch";
 import UserMenu from "../UserMenu";
 import Rooms from "../Rooms";
 import { appName } from "../../config/constants";
-import ThemeContext from "../../context/ThemeContext";
+import useTheme from "../../customHooks/useTheme";
 import "./SidePanel.css";
 
 const SidePanel = () => {
   const [checked, setChecked] = useState(false);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useTheme();
   const handleChange = () => {
     setChecked(!checked);
     toggleTheme();

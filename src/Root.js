@@ -24,7 +24,6 @@ const Root = () => {
       }
     });
   }, [history]);
-
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Switch>

@@ -1,8 +1,8 @@
-import ThemeContext from "../context/ThemeContext";
-import React, { useContext } from "react";
+import React from "react";
+import useTheme from "../customHooks/useTheme";
 
 const RoomSelectMessage = () => {
-  const { theme = {} } = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <h3 style={{ padding: "1rem", ...theme.chatPanel }}>
       Please select a room

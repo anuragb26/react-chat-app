@@ -10,12 +10,12 @@ import Messages from "./Messages";
 import SendMessage from "./SendMessage";
 import CurrentRoomContext from "../../context/CurrentRoomContext";
 import firebase from "../../config/firebase";
-import ThemeContext from "../../context/ThemeContext";
+import useTheme from "../../customHooks/useTheme";
 import "./ChatPanel.css";
 const messagesRefFirebase = firebase.database().ref("messages");
 
 const ChatPanel = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const [messages, setMessages] = useState([]);
   const messagesRef = useRef();
   const messagesRefFirebasePerRoom = useRef();
