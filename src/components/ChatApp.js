@@ -28,7 +28,7 @@ const ChatApp = () => {
         opacity: "0.8",
       },
       chatPanel: {
-        backgroundColor: "grey",
+        backgroundColor: "black",
         color: "white",
       },
       message: {
@@ -36,7 +36,7 @@ const ChatApp = () => {
         color: "white",
       },
       chatInputText: {
-        backgroundColor: "grey",
+        backgroundColor: "#808080",
         color: "white",
       },
     },
@@ -45,7 +45,6 @@ const ChatApp = () => {
     setThemeColor(themeColor === "dark" ? "light" : "dark");
   };
   const providerValue = { theme: theme[themeColor], toggleTheme };
-
   return (
     <ThemeContext.Provider value={providerValue}>
       <Grid
